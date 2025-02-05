@@ -1,21 +1,28 @@
 package entity;
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class PressaoArterial {
 
     private int id;
-    private float valorPressao;
-    private LocalDateTime data;
-    private LocalDateTime hora;
+    private double valorPressao;
+    private LocalDate data;
+    private LocalTime hora;
 
     public PressaoArterial(){
 
     }
 
-    public PressaoArterial(int id, float valorPressao, LocalDateTime data, LocalDateTime hora) {
+    public PressaoArterial(int id, double valorPressao, LocalDate data, LocalTime hora) {
         this.id = id;
+        this.valorPressao = valorPressao;
+        this.data = data;
+        this.hora = hora;
+    }
+
+    public PressaoArterial(double valorPressao, LocalDate data, LocalTime hora) {
         this.valorPressao = valorPressao;
         this.data = data;
         this.hora = hora;
@@ -25,27 +32,27 @@ public class PressaoArterial {
         return id;
     }
 
-    public float getValorPressao() {
+    public double getValorPressao() {
         return valorPressao;
     }
 
-    public void setValorPressao(float valorPressao) {
+    public void setValorPressao(double valorPressao) {
         this.valorPressao = valorPressao;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
-    public LocalDateTime getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(LocalDateTime hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

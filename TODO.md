@@ -46,3 +46,9 @@
 🔹 Criar um **protótipo da interface** para ver como a experiência do usuário será  
 🔹 Implementar um **CRUD simples para registro de medições**  
 🔹 Adicionar a **geração de PDF e gráficos**
+
+
+## LIKS ÚTEIS
+
+DOCS CONNECTOR-J: https://dev.mysql.com/doc/connector-j/en/
+
