@@ -32,6 +32,10 @@ public class PressaoArterial {
         return id;
     }
 
+    public void setId(int id){
+        this.id = id;
+    }
+
     public double getValorPressao() {
         return valorPressao;
     }
