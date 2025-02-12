@@ -14,9 +14,39 @@ public class MainTeste {
 
         //new PressaoArterialDAO().cadastrarPressaoArterial(pa1);
 
-        System.out.println("Id: " + pad.buscarPressaoArterial(11).getId());
-        System.out.println("valor pressao: " + pad.buscarPressaoArterial(11).getValorPressao());
-        System.out.println("data: " + pad.buscarPressaoArterial(11).getData());
-        System.out.println("hora: " + pad.buscarPressaoArterial(11).getHora());
+        System.out.println("Id: " + pad.buscarPressaoArterial(5).getId());
+        System.out.println("valor pressao: " + pad.buscarPressaoArterial(5).getValorPressao());
+        System.out.println("data: " + pad.buscarPressaoArterial(5).getData());
+        System.out.println("hora: " + pad.buscarPressaoArterial(5).getHora());
+
+        PressaoArterial pa1U = new PressaoArterial(5, 14.3, data, hora);
+
+        pad.atualizarPressaoArterial(pa1U);
+
+        System.out.println("Id: " + pad.buscarPressaoArterial(5).getId());
+        System.out.println("valor pressao: " + pad.buscarPressaoArterial(5).getValorPressao());
+        System.out.println("data: " + pad.buscarPressaoArterial(5).getData());
+        System.out.println("hora: " + pad.buscarPressaoArterial(5).getHora());
+
+        //pad.deletarPressaoArterial(11);
+        System.out.println("==================================================");
+        for (PressaoArterial pa : pad.listarPressaoArterial()){
+            System.out.println("ID: " + pa.getId());
+            System.out.println("Valor pressao: " + pa.getValorPressao());
+            System.out.println("Data: " + pa.getData());
+            System.out.println("Hora: " + pa.getHora());
+            System.out.println("==================================================");
+        }
+        System.out.println("=== FILTRAR POR DATAS");
+        System.out.println("==================================================");
+        for (PressaoArterial pa : pad.filtrarPorData(data)){
+            System.out.println("ID: " + pa.getId());
+            System.out.println("Valor pressao: " + pa.getValorPressao());
+            System.out.println("Data: " + pa.getData());
+            System.out.println("Hora: " + pa.getHora());
+            System.out.println("==================================================");
+        }
+
+
     }
 }

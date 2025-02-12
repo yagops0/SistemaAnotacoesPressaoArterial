@@ -52,3 +52,8 @@
 
 DOCS CONNECTOR-J: https://dev.mysql.com/doc/connector-j/en/
 
+## ALGUMAS IDEIAS
+
+Quando for filtragem das datas aparecer uma modal perguntando se o usuário quer digitar uma data específica ou a data de hoje;
+DATA NO FOMRATO = "ANO-MÊS-DIA"
+

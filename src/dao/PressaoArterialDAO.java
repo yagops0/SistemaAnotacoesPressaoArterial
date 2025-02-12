@@ -6,6 +6,8 @@ import interfaces.CrudInterface;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PressaoArterialDAO implements CrudInterface {
 
@@ -91,7 +93,7 @@ public class PressaoArterialDAO implements CrudInterface {
 
         PreparedStatement ps = null;
         try {
-            Conexao.getConexao().prepareStatement(sql);
+            ps = Conexao.getConexao().prepareStatement(sql);
 
             ps.setInt(1, id);
 
@@ -102,5 +104,89 @@ public class PressaoArterialDAO implements CrudInterface {
         }
     }
 
+    @Override
+    public List<PressaoArterial> listarPressaoArterial(){
+        String sql = "SELECT *  FROM dadosPressaoArterial";
 
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+
+        List<PressaoArterial> pressaoArterials = new ArrayList<>();
+
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                PressaoArterial pa = new PressaoArterial();
+
+                pa.setId(rs.getInt("id"));
+                pa.setValorPressao(rs.getDouble("valorPressao"));
+                pa.setData(rs.getDate("data").toLocalDate());
+                pa.setHora(rs.getTime("hora").toLocalTime());
+
+                pressaoArterials.add(pa);
+
+            }
+
+            if (rs != null){
+                rs.close();
+            }
+
+            if (ps != null){
+                ps.close();
+            }
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return  null;
+        }
+
+        return pressaoArterials;
+    }
+
+    @Override
+    public List<PressaoArterial> filtrarPorData(LocalDate data) {
+        String sql = "SELECT * FROM dadosPressaoArterial WHERE data = ?";
+
+        List<PressaoArterial> filtrarPAsData = new ArrayList<>();
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+
+        try {
+
+            PressaoArterial pa = new PressaoArterial();
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            ps.setDate(1,Date.valueOf(data));
+
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                pa.setId(rs.getInt("id"));
+                pa.setValorPressao(rs.getDouble("valorPressao"));
+                pa.setData(rs.getDate("data").toLocalDate());
+                pa.setHora(rs.getTime("hora").toLocalTime());
+
+                filtrarPAsData.add(pa);
+
+                if (ps != null){
+                    ps.close();
+                }
+
+                if (rs != null){
+                    rs.close();
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return filtrarPAsData;
+    }
 }

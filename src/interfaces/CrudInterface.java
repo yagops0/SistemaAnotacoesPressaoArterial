@@ -8,21 +8,19 @@ import java.util.List;
 public interface CrudInterface {
     public void cadastrarPressaoArterial(PressaoArterial pressaoArterial);
 
-    public void atualizarPressaoArterial(PressaoArterial pressaoArterial);
-
     public PressaoArterial buscarPressaoArterial(int id);
 
-   // public void filtrarPorData(LocalDate data);
+    public void atualizarPressaoArterial(PressaoArterial pressaoArterial);
 
     public void deletarPressaoArterial(int id);
 
-    /*public List<PressaoArterial> filtrarMaior();
+    public List<PressaoArterial> listarPressaoArterial();
 
-    public List<PressaoArterial> filtrarMenor(float pressao);
+    public List<PressaoArterial> filtrarPorData(LocalDate data);
 
-    public List<PressaoArterial> listarPressaoArterial();*/
+    /*public List<PressaoArterial> filtrarMaior(double pressaa);
 
-    
+    public List<PressaoArterial> filtrarMenor(double pressao);*/
 
 
 }
