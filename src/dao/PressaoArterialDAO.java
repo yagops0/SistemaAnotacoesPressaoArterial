@@ -174,13 +174,6 @@ public class PressaoArterialDAO implements CrudInterface {
 
                 filtrarPAsData.add(pa);
 
-                if (ps != null){
-                    ps.close();
-                }
-
-                if (rs != null){
-                    rs.close();
-                }
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -188,5 +181,68 @@ public class PressaoArterialDAO implements CrudInterface {
         }
 
         return filtrarPAsData;
+    }
+
+    @Override
+    public List<PressaoArterial> filtrarMaior() {
+        String sql = "SELECT * FROM dadosPressaoArterial WHERE valorPressao > 13.9";
+
+        List<PressaoArterial> listaPressaoMaior = new ArrayList<>();
+
+        PreparedStatement ps =  null;
+
+        ResultSet rs = null;
+
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()){
+                PressaoArterial pa = new PressaoArterial();
+                pa.setId(rs.getInt("id"));
+                pa.setValorPressao(rs.getDouble("valorPressao"));
+                pa.setData(rs.getDate("data").toLocalDate());
+                pa.setHora(rs.getTime("hora").toLocalTime());
+
+                listaPressaoMaior.add(pa);
+            }
+
+            return listaPressaoMaior;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<PressaoArterial> filtrarMenor() {
+        String sql = "SELECT * FROM dadosPressaoArterial WHERE valorPressao < 11";
+
+        List<PressaoArterial> listaPressaoMenor = new ArrayList<>();
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                PressaoArterial pa = new PressaoArterial();
+
+                pa.setId(rs.getInt("id"));
+                pa.setValorPressao(rs.getDouble("valorPressao"));
+                pa.setData(rs.getDate("data").toLocalDate());
+                pa.setHora(rs.getTime("hora").toLocalTime());
+
+                listaPressaoMenor.add(pa);
+            }
+            return listaPressaoMenor;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

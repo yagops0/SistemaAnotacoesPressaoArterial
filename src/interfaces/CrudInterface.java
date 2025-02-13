@@ -18,9 +18,12 @@ public interface CrudInterface {
 
     public List<PressaoArterial> filtrarPorData(LocalDate data);
 
-    /*public List<PressaoArterial> filtrarMaior(double pressaa);
+    // RETORNAR VALORES ACIMA DE 13
+    public List<PressaoArterial> filtrarMaior();
 
-    public List<PressaoArterial> filtrarMenor(double pressao);*/
+
+    // RETORNAR VALORES ABAIXO DE 11
+    public List<PressaoArterial> filtrarMenor();
 
 
 }
