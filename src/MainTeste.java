@@ -1,6 +1,9 @@
+import com.itextpdf.text.DocumentException;
+import conrollers.RelatorioPressaoArterialPDFController;
 import dao.PressaoArterialDAO;
 import entity.PressaoArterial;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -10,7 +13,7 @@ public class MainTeste {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DocumentException, FileNotFoundException {
         PressaoArterialDAO pad = new PressaoArterialDAO();
         LocalDate data = LocalDate.now();
         LocalTime hora = LocalTime.now();
@@ -47,7 +50,7 @@ public class MainTeste {
 
         System.out.println("=== FILTRAR POR DATAS");
         System.out.println("==================================================");
-        for (PressaoArterial pa : pad.filtrarPorData(LocalDate.parse("2025-02-12"))){
+        for (PressaoArterial pa : pad.filtrarPorData(LocalDate.parse("2025-03-14"))){
             System.out.println("ID: " + pa.getId());
             System.out.println("Valor pressao: " + pa.getValorPressao());
             System.out.println("Data: " + pa.getData());
@@ -73,6 +76,8 @@ public class MainTeste {
             System.out.println("HORA: " + pa.getHora());
             System.out.println("==================================================");
         }
+
+        RelatorioPressaoArterialPDFController.gerarRelatorioPDFCompleto();
 
     }
 }

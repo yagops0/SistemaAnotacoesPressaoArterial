@@ -158,8 +158,6 @@ public class PressaoArterialDAO implements CrudInterface {
         ResultSet rs = null;
 
         try {
-
-            PressaoArterial pa = new PressaoArterial();
             ps = Conexao.getConexao().prepareStatement(sql);
 
             ps.setDate(1,Date.valueOf(data));
@@ -167,6 +165,7 @@ public class PressaoArterialDAO implements CrudInterface {
             rs = ps.executeQuery();
 
             while (rs.next()){
+                PressaoArterial pa = new PressaoArterial();
                 pa.setId(rs.getInt("id"));
                 pa.setValorPressao(rs.getDouble("valorPressao"));
                 pa.setData(rs.getDate("data").toLocalDate());
