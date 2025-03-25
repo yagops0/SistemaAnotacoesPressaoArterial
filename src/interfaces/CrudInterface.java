@@ -21,9 +21,10 @@ public interface CrudInterface {
     // RETORNAR VALORES ACIMA DE 13
     public List<PressaoArterial> filtrarMaior();
 
-
     // RETORNAR VALORES ABAIXO DE 11
     public List<PressaoArterial> filtrarMenor();
+
+    public List<PressaoArterial> filtrarMaiorEmenor();
 
 
 }

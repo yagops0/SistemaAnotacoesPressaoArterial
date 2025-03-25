@@ -1,5 +1,5 @@
 import com.itextpdf.text.DocumentException;
-import conrollers.RelatorioPressaoArterialPDFController;
+import controllers.RelatorioPressaoArterialPDFController;
 import dao.PressaoArterialDAO;
 import entity.PressaoArterial;
 

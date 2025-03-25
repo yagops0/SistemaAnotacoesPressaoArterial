@@ -244,4 +244,36 @@ public class PressaoArterialDAO implements CrudInterface {
             return null;
         }
     }
+
+    @Override
+    public List<PressaoArterial> filtrarMaiorEmenor(){
+        String sql = "SELECT * FROM dadospressaoarterial WHERE valorPressao < 11.0 OR valorPressao > 13.9";
+
+        List<PressaoArterial> listaMenorMaior = new ArrayList<>();
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                PressaoArterial pa = new PressaoArterial();
+
+                pa.setId(rs.getInt("id"));
+                pa.setValorPressao(rs.getDouble("valorPressao"));
+                pa.setData(rs.getDate("data").toLocalDate());
+                pa.setHora(rs.getTime("hora").toLocalTime());
+
+                listaMenorMaior.add(pa);
+            }
+            return listaMenorMaior;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

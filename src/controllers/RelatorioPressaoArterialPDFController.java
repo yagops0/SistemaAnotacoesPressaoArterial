@@ -1,4 +1,4 @@
-package conrollers;
+package controllers;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -155,5 +155,44 @@ public class RelatorioPressaoArterialPDFController {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static void gerarRelatorioPDFMenorMaior() throws FileNotFoundException, DocumentException {
+
+        PdfWriter.getInstance(document, new FileOutputStream("RelatorioPressaoArterial.pdf"));
+
+        document.open();
+
+        document.add(new Paragraph(dataAgora.toString()));
+
+        document.add(new Paragraph(" "));
+
+        document.add(new Paragraph("RELATÓRIO PRESSÃO ARTERIAL ABAIXO DO NORMAL E ACIMA DO NORMAL"));
+
+        document.add(new Paragraph(" "));
+
+        PdfPTable tabela = new PdfPTable(3);
+
+        PdfPCell col1 = new PdfPCell(new Paragraph("Pressão Arterial"));
+        tabela.addCell(col1);
+        PdfPCell col2 = new PdfPCell(new Paragraph("Data"));
+        tabela.addCell(col2);
+        PdfPCell col3 = new PdfPCell(new Paragraph("Hora"));
+        tabela.addCell(col3);
+        for (PressaoArterial pa : pad.filtrarMaiorEmenor()){
+            tabela.addCell(Double.toString(pa.getValorPressao()));
+            tabela.addCell(pa.getData().toString());
+            tabela.addCell(pa.getHora().toString());
+        }
+        document.add(tabela);
+        document.close();
+
+
+        try {
+            Desktop.getDesktop().open(new File("RelatorioPressaoArterial.pdf"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
