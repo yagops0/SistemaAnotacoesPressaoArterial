@@ -3,15 +3,12 @@ import controllers.RelatorioPressaoArterialPDFController;
 import dao.PressaoArterialDAO;
 import entity.PressaoArterial;
 
+
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MainTeste {
-
-    public void formatarData(LocalDate data){
-
-    }
 
     public static void main(String[] args) throws DocumentException, FileNotFoundException {
         PressaoArterialDAO pad = new PressaoArterialDAO();
@@ -78,6 +75,9 @@ public class MainTeste {
         }
 
         RelatorioPressaoArterialPDFController.gerarRelatorioPDFCompleto();
+
+
+//        trp.open();
 
     }
 }

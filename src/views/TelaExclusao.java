@@ -33,6 +33,7 @@ public class TelaExclusao extends javax.swing.JFrame {
         tblPressaoEx = new javax.swing.JTable();
         btnFecharEx = new javax.swing.JButton();
         btnExcluirEx = new javax.swing.JButton();
+        btnApagarTudoEx = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +75,14 @@ public class TelaExclusao extends javax.swing.JFrame {
             }
         });
 
+        btnApagarTudoEx.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnApagarTudoEx.setText("APAGAR TUDO");
+        btnApagarTudoEx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarTudoExActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,9 +97,11 @@ public class TelaExclusao extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(btnApagarTudoEx)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExcluirEx)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(33, 33, 33)
                 .addComponent(btnFecharEx)
                 .addGap(28, 28, 28))
         );
@@ -107,7 +118,8 @@ public class TelaExclusao extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFecharEx)
-                    .addComponent(btnExcluirEx))
+                    .addComponent(btnExcluirEx)
+                    .addComponent(btnApagarTudoEx))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -123,6 +135,10 @@ public class TelaExclusao extends javax.swing.JFrame {
     private void btnExcluirExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirExActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirExActionPerformed
+
+    private void btnApagarTudoExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarTudoExActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnApagarTudoExActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +176,7 @@ public class TelaExclusao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApagarTudoEx;
     private javax.swing.JButton btnExcluirEx;
     private javax.swing.JButton btnFecharEx;
     private javax.swing.JLabel jLabel1;

@@ -4,6 +4,13 @@
  */
 package views;
 
+import controllers.PressaoArterialController;
+import entity.PressaoArterial;
+
+import javax.swing.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  *
  * @author yagos
@@ -13,6 +20,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
+    PressaoArterialController pac = new PressaoArterialController();
+
     public TelaPrincipal() {
         initComponents();
     }
@@ -214,6 +223,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
         // TODO add your handling code here:
+        if (txtValorPressao.getText().isEmpty()|| txtData.getText().isEmpty() || txtHora.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Por favor preencha todos os campos!");
+        }else {
+            this.create();
+            txtValorPressao.setText("");
+            txtData.setText("");
+            txtHora.setText("");
+        }
     }//GEN-LAST:event_btnCadastrar1ActionPerformed
 
     private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed
@@ -279,6 +296,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 new TelaPrincipal().setVisible(true);
             }
         });
+    }
+
+    public void create(){
+        PressaoArterial pa = new PressaoArterial(Double.parseDouble(txtValorPressao.getText()), LocalDate.parse(txtData.getText()), LocalTime.parse(txtHora.getText()));
+        if (pac.cadastro(pa)){
+            JOptionPane.showMessageDialog(this, "Pressão adicionada com sucesso!");;
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Erro, não foi possível adicionar a pressão.");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
