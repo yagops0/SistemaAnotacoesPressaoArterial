@@ -105,6 +105,21 @@ public class PressaoArterialDAO implements CrudInterface {
     }
 
     @Override
+    public void deletarTudo() {
+        String sql = "DELETE FROM dadosPressaoArterial";
+
+        PreparedStatement ps = null;
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            ps.execute();
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<PressaoArterial> listarPressaoArterial(){
         String sql = "SELECT *  FROM dadosPressaoArterial";
 

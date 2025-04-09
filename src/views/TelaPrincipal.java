@@ -4,13 +4,6 @@
  */
 package views;
 
-import controllers.PressaoArterialController;
-import entity.PressaoArterial;
-
-import javax.swing.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 /**
  *
  * @author yagos
@@ -20,8 +13,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
-    PressaoArterialController pac = new PressaoArterialController();
-
     public TelaPrincipal() {
         initComponents();
     }
@@ -58,7 +49,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Data:");
+        jLabel1.setText("Data(Digite a data no formato aaaa-mm-dd):");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -155,29 +146,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jSeparator2))
                     .addComponent(jSeparator1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtHora)
-                            .addComponent(txtData)
-                            .addComponent(txtValorPressao, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 163, Short.MAX_VALUE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 409, Short.MAX_VALUE)
                 .addComponent(btnFechar)
                 .addGap(184, 184, 184))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtHora)
+                    .addComponent(txtData)
+                    .addComponent(txtValorPressao, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(166, 166, 166)
                     .addComponent(btnCadastrar1)
-                    .addContainerGap(366, Short.MAX_VALUE)))
+                    .addContainerGap(391, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,14 +214,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
         // TODO add your handling code here:
-        if (txtValorPressao.getText().isEmpty()|| txtData.getText().isEmpty() || txtHora.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Por favor preencha todos os campos!");
-        }else {
-            this.create();
-            txtValorPressao.setText("");
-            txtData.setText("");
-            txtHora.setText("");
-        }
     }//GEN-LAST:event_btnCadastrar1ActionPerformed
 
     private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed
@@ -296,16 +279,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 new TelaPrincipal().setVisible(true);
             }
         });
-    }
-
-    public void create(){
-        PressaoArterial pa = new PressaoArterial(Double.parseDouble(txtValorPressao.getText()), LocalDate.parse(txtData.getText()), LocalTime.parse(txtHora.getText()));
-        if (pac.cadastro(pa)){
-            JOptionPane.showMessageDialog(this, "Pressão adicionada com sucesso!");;
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Erro, não foi possível adicionar a pressão.");
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,6 +14,8 @@ public interface CrudInterface {
 
     public void deletarPressaoArterial(int id);
 
+    public void deletarTudo();
+
     public List<PressaoArterial> listarPressaoArterial();
 
     public List<PressaoArterial> filtrarPorData(LocalDate data);
