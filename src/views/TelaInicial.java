@@ -4,18 +4,24 @@
  */
 package views;
 
+import controllers.PressaoArterialController;
+
 /**
  *
  * @author yagos
  */
 public class TelaInicial extends javax.swing.JFrame {
 
+
     /**
      * Creates new form TelaPrincipal
      */
+
+
     public TelaInicial() {
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

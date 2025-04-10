@@ -4,6 +4,7 @@ import dao.PressaoArterialDAO;
 import entity.PressaoArterial;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class PressaoArterialController {
     PressaoArterialDAO pad = new PressaoArterialDAO();
@@ -44,6 +45,26 @@ public class PressaoArterialController {
         }else {
             return false;
         }
+    }
+
+    public List<PressaoArterial> findAll(){
+        return pad.listarPressaoArterial();
+    }
+
+    public List<PressaoArterial> findByData(LocalDate data){
+        return pad.filtrarPorData(data);
+    }
+
+    public List<PressaoArterial> findByPressaoAlta(){
+        return pad.filtrarMaior();
+    }
+
+    public List<PressaoArterial> findByPressaoBaixa(){
+        return pad.filtrarMenor();
+    }
+
+    public List<PressaoArterial> findByPressaoAltaBaixa(){
+        return pad.filtrarMaiorEmenor();
     }
 
 }

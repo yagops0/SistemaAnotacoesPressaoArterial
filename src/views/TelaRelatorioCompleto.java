@@ -4,11 +4,22 @@
  */
 package views;
 
+import controllers.PressaoArterialController;
+import controllers.RelatorioPressaoArterialPDFController;
+import entity.PressaoArterial;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author yagos
  */
 public class TelaRelatorioCompleto extends javax.swing.JFrame {
+    PressaoArterialController pac;
 
     /**
      * Creates new form TelaRelatorioCompleto
@@ -17,6 +28,23 @@ public class TelaRelatorioCompleto extends javax.swing.JFrame {
         initComponents();
     }
 
+    public TelaRelatorioCompleto(PressaoArterialController pac){
+        initComponents();
+        this.pac = pac;
+
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        DefaultTableModel tabPressao = (DefaultTableModel) tblRC.getModel();
+        for (PressaoArterial listaPa : pac.findAll()){
+            Object[] pressaoArterial = new Object[]{
+                    listaPa.getId(),
+                    listaPa.getValorPressao(),
+                    formatoData.format(listaPa.getData()),
+                    listaPa.getHora()
+            };
+
+            tabPressao.addRow(pressaoArterial);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,6 +149,7 @@ public class TelaRelatorioCompleto extends javax.swing.JFrame {
 
     private void btnGerarPdfRCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarPdfRCActionPerformed
         // TODO add your handling code here:
+        gerarPdf();
     }//GEN-LAST:event_btnGerarPdfRCActionPerformed
 
     /**
@@ -156,6 +185,15 @@ public class TelaRelatorioCompleto extends javax.swing.JFrame {
                 new TelaRelatorioCompleto().setVisible(true);
             }
         });
+    }
+
+    public void gerarPdf(){
+        try {
+            RelatorioPressaoArterialPDFController.gerarRelatorioPDFCompleto();
+            JOptionPane.showMessageDialog(this, "Relatrório gerado com sucesso!!");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro, por favor tente novamente.");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
