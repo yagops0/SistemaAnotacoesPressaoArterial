@@ -4,17 +4,24 @@
  */
 package views;
 
+import controllers.PressaoArterialController;
+
 /**
  *
  * @author yagos
  */
 public class TelaExclusao extends javax.swing.JFrame {
-
+    PressaoArterialController pac;
     /**
      * Creates new form TelaExclusao
      */
     public TelaExclusao() {
         initComponents();
+    }
+
+    public TelaExclusao(PressaoArterialController pac) {
+        initComponents();
+        this.pac = pac;
     }
 
     /**

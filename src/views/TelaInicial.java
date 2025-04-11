@@ -11,7 +11,7 @@ import controllers.PressaoArterialController;
  * @author yagos
  */
 public class TelaInicial extends javax.swing.JFrame {
-
+    PressaoArterialController pac = new PressaoArterialController();
 
     /**
      * Creates new form TelaPrincipal
@@ -124,7 +124,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
-        TelaPrincipal tp = new TelaPrincipal();
+        TelaPrincipal tp = new TelaPrincipal(this.pac);
         tp.setVisible(true);
     }//GEN-LAST:event_btnIniciarActionPerformed
 

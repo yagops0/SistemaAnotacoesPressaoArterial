@@ -4,17 +4,24 @@
  */
 package views;
 
+import controllers.PressaoArterialController;
+
 /**
  *
  * @author yagos
  */
 public class TelaEdicao extends javax.swing.JFrame {
-
+    PressaoArterialController pac;
     /**
      * Creates new form TelaEdicao
      */
     public TelaEdicao() {
         initComponents();
+    }
+
+    public TelaEdicao(PressaoArterialController pac) {
+        initComponents();
+        this.pac = pac;
     }
 
     /**

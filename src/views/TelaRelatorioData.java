@@ -4,17 +4,24 @@
  */
 package views;
 
+import controllers.PressaoArterialController;
+
 /**
  *
  * @author yagos
  */
 public class TelaRelatorioData extends javax.swing.JFrame {
-
+    PressaoArterialController pac;
     /**
      * Creates new form TelaRelatorioData
      */
     public TelaRelatorioData() {
         initComponents();
+    }
+
+    public TelaRelatorioData(PressaoArterialController pac) {
+        initComponents();
+        this.pac = pac;
     }
 
     /**

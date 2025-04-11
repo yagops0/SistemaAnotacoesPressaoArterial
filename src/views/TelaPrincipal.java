@@ -16,13 +16,18 @@ import java.time.LocalTime;
  * @author yagos
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    PressaoArterialController pac = new PressaoArterialController();
+    PressaoArterialController pac;
     /**
      * Creates new form TelaPrincipal
      */
 
     public TelaPrincipal() {
         initComponents();
+    }
+
+    public TelaPrincipal(PressaoArterialController pac) {
+        initComponents();
+        this.pac = pac;
     }
 
     /**
@@ -228,31 +233,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed
         // TODO add your handling code here:
-        TelaEdicao te = new TelaEdicao();
+        TelaEdicao te = new TelaEdicao(this.pac);
         te.setVisible(true);
     }//GEN-LAST:event_menuEditarActionPerformed
 
     private void menuExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExcluirActionPerformed
         // TODO add your handling code here:
-        TelaExclusao tex = new TelaExclusao();
+        TelaExclusao tex = new TelaExclusao(this.pac);
         tex.setVisible(true);
     }//GEN-LAST:event_menuExcluirActionPerformed
 
     private void menuRelatorioCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioCompletoActionPerformed
         // TODO add your handling code here:
-        TelaRelatorioCompleto trc = new TelaRelatorioCompleto();
+        TelaRelatorioCompleto trc = new TelaRelatorioCompleto(this.pac);
         trc.setVisible(true);
     }//GEN-LAST:event_menuRelatorioCompletoActionPerformed
 
     private void menuRelatorioDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioDataActionPerformed
         // TODO add your handling code here:
-        TelaRelatorioData trd = new TelaRelatorioData();
+        TelaRelatorioData trd = new TelaRelatorioData(this.pac);
         trd.setVisible(true);
     }//GEN-LAST:event_menuRelatorioDataActionPerformed
 
     private void menuRelatorioValorPressaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioValorPressaoActionPerformed
         // TODO add your handling code here:
-        TelaRelatorioPressao trp = new TelaRelatorioPressao();
+        TelaRelatorioPressao trp = new TelaRelatorioPressao(this.pac);
         trp.setVisible(true);
     }//GEN-LAST:event_menuRelatorioValorPressaoActionPerformed
 
