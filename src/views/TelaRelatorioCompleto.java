@@ -32,9 +32,6 @@ public class TelaRelatorioCompleto extends javax.swing.JFrame {
     public TelaRelatorioCompleto(PressaoArterialController pac){
         initComponents();
         this.pac = pac;
-        System.out.println("Chamando o construtor com controller");
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
         DefaultTableModel tabPressao = (DefaultTableModel) tblRC.getModel();
         for (PressaoArterial listaPa : pac.findAll()){

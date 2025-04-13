@@ -5,6 +5,9 @@
 package views;
 
 import controllers.PressaoArterialController;
+import entity.PressaoArterial;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +26,18 @@ public class TelaRelatorioPressao extends javax.swing.JFrame {
     public TelaRelatorioPressao(PressaoArterialController pac) {
         initComponents();
         this.pac = pac;
+
+        DefaultTableModel tabPressao = (DefaultTableModel) tblRP.getModel();
+        for (PressaoArterial listaPa : pac.findAll()){
+            Object[] pressaoArterial = new Object[]{
+                    listaPa.getId(),
+                    listaPa.getValorPressao(),
+                    listaPa.getData(),
+                    listaPa.getHora()
+            };
+
+            tabPressao.addRow(pressaoArterial);
+        }
     }
 
     /**

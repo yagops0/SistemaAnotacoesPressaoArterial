@@ -5,6 +5,10 @@
 package views;
 
 import controllers.PressaoArterialController;
+import entity.PressaoArterial;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +26,18 @@ public class TelaExclusao extends javax.swing.JFrame {
     public TelaExclusao(PressaoArterialController pac) {
         initComponents();
         this.pac = pac;
+
+        DefaultTableModel tabPressao = (DefaultTableModel) tblPressaoEx.getModel();
+        for (PressaoArterial listaPa : pac.findAll()){
+            Object[] pressaoArterial = new Object[]{
+                    listaPa.getId(),
+                    listaPa.getValorPressao(),
+                    listaPa.getData(),
+                    listaPa.getHora()
+            };
+
+            tabPressao.addRow(pressaoArterial);
+        }
     }
 
     /**
@@ -141,10 +157,20 @@ public class TelaExclusao extends javax.swing.JFrame {
 
     private void btnExcluirExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirExActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_btnExcluirExActionPerformed
 
-    private void btnApagarTudoExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarTudoExActionPerformed
+    private void btnApagarTudoExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarTudoExActionPerf3ormed
         // TODO add your handling code here:
+        int resultadoConfirm = JOptionPane.showConfirmDialog(this, "Deseja mesmo apagar todos os registros?");
+
+        if (resultadoConfirm == 0){
+            if (pac.excluirTudo()){
+                JOptionPane.showMessageDialog(this, "Registros apagados!");
+            }else {
+                JOptionPane.showMessageDialog(this, "Ocorreu um erro. Não foi possível apagar os registros!");
+            }
+        }
     }//GEN-LAST:event_btnApagarTudoExActionPerformed
 
     /**

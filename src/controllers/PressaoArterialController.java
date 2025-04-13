@@ -39,6 +39,15 @@ public class PressaoArterialController {
         }
     }
 
+    public boolean excluirTudo(){
+        try {
+            pad.deletarTudo();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
     public boolean busca(int id){
         if(pad.buscarPressaoArterial(id) != null){
             return true;

@@ -4,7 +4,14 @@
  */
 package views;
 
+import com.itextpdf.text.DocumentException;
 import controllers.PressaoArterialController;
+import controllers.RelatorioPressaoArterialPDFController;
+import entity.PressaoArterial;
+
+import javax.swing.table.DefaultTableModel;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
 
 /**
  *
@@ -12,6 +19,7 @@ import controllers.PressaoArterialController;
  */
 public class TelaRelatorioData extends javax.swing.JFrame {
     PressaoArterialController pac;
+    private int buttonClicked;
     /**
      * Creates new form TelaRelatorioData
      */
@@ -22,6 +30,18 @@ public class TelaRelatorioData extends javax.swing.JFrame {
     public TelaRelatorioData(PressaoArterialController pac) {
         initComponents();
         this.pac = pac;
+
+        DefaultTableModel tabPressao = (DefaultTableModel) tblRD.getModel();
+        for (PressaoArterial listaPa : pac.findAll()){
+            Object[] pressaoArterial = new Object[]{
+                    listaPa.getId(),
+                    listaPa.getValorPressao(),
+                    listaPa.getData(),
+                    listaPa.getHora()
+            };
+
+            tabPressao.addRow(pressaoArterial);
+        }
     }
 
     /**
@@ -95,7 +115,13 @@ public class TelaRelatorioData extends javax.swing.JFrame {
         btnGerarPdfRD.setText("GERAR PDF");
         btnGerarPdfRD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerarPdfRDActionPerformed(evt);
+                try {
+                    btnGerarPdfRDActionPerformed(evt);
+                } catch (DocumentException e) {
+                    throw new RuntimeException(e);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -165,11 +191,32 @@ public class TelaRelatorioData extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFiltrarRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarRDActionPerformed
+        buttonClicked = 0;
+        if (pac.findByData(LocalDate.parse(txtDataRD.getText())) != null){
+
+            DefaultTableModel tabPressao = (DefaultTableModel) tblRD.getModel();
+            tabPressao.setRowCount(0);
+            for (PressaoArterial listaPa : pac.findByData(LocalDate.parse(txtDataRD.getText()))){
+                Object[] pressaoArterial = new Object[]{
+                        listaPa.getId(),
+                        listaPa.getValorPressao(),
+                        listaPa.getData(),
+                        listaPa.getHora()
+                };
+
+                tabPressao.addRow(pressaoArterial);
+            }
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFiltrarRDActionPerformed
 
-    private void btnGerarPdfRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarPdfRDActionPerformed
+    private void btnGerarPdfRDActionPerformed(java.awt.event.ActionEvent evt) throws DocumentException, FileNotFoundException {//GEN-FIRST:event_btnGerarPdfRDActionPerformed
         // TODO add your handling code here:
+        if (buttonClicked == 0){
+            RelatorioPressaoArterialPDFController.gerarRelatorioPDFData(LocalDate.parse(txtDataRD.getText()));
+        } else {
+            RelatorioPressaoArterialPDFController.gerarRelatorioPDFCompleto();
+        }
     }//GEN-LAST:event_btnGerarPdfRDActionPerformed
 
     private void btnFecharRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharRDActionPerformed
